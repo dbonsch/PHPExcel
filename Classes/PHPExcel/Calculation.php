@@ -1736,10 +1736,10 @@ class PHPExcel_Calculation {
 	 * __clone implementation. Cloning should not be allowed in a Singleton!
 	 *
 	 * @access	public
-	 * @throws	Exception
+	 * @throws	PHPExcel_Exception
 	 */
 	public final function __clone() {
-		throw new Exception ('Cloning a Singleton is not allowed!');
+		throw new PHPExcel_Exception ('Cloning a Singleton is not allowed!');
 	}	//	function __clone()
 
 
@@ -2120,13 +2120,13 @@ class PHPExcel_Calculation {
 	 * @access	public
 	 * @param	PHPExcel_Cell	$pCell	Cell to calculate
 	 * @return	mixed
-	 * @throws	Exception
+	 * @throws	PHPExcel_Exception
 	 */
 	public function calculate(PHPExcel_Cell $pCell = null) {
 		try {
 			return $this->calculateCellValue($pCell);
-		} catch (Exception $e) {
-			throw(new Exception($e->getMessage()));
+		} catch (PHPExcel_Exception $e) {
+			throw(new PHPExcel_Exception($e->getMessage()));
 		}
 	}	//	function calculate()
 
@@ -2138,7 +2138,7 @@ class PHPExcel_Calculation {
 	 * @param	PHPExcel_Cell	$pCell		Cell to calculate
 	 * @param	Boolean			$resetLog	Flag indicating whether the debug log should be reset or not
 	 * @return	mixed
-	 * @throws	Exception
+	 * @throws	PHPExcel_Exception
 	 */
 	public function calculateCellValue(PHPExcel_Cell $pCell = null, $resetLog = true) {
 		if ($resetLog) {
@@ -2162,8 +2162,8 @@ class PHPExcel_Calculation {
 		//	Execute the calculation for the cell formula
 		try {
 			$result = self::_unwrapResult($this->_calculateFormulaValue($pCell->getValue(), $pCell->getCoordinate(), $pCell));
-		} catch (Exception $e) {
-			throw(new Exception($e->getMessage()));
+		} catch (PHPExcel_Exception $e) {
+			throw(new PHPExcel_Exception($e->getMessage()));
 		}
 
 		if ((is_array($result)) && (self::$returnArrayAsType != self::RETURN_ARRAY_AS_ARRAY)) {
@@ -2202,7 +2202,7 @@ class PHPExcel_Calculation {
 	 *
 	 * @param	string		$formula		Formula to parse
 	 * @return	array
-	 * @throws	Exception
+	 * @throws	PHPExcel_Exception
 	 */
 	public function parseFormula($formula) {
 		//	Basic validation that this is indeed a formula
@@ -2222,7 +2222,7 @@ class PHPExcel_Calculation {
 	 *
 	 * @param	string		$formula		Formula to parse
 	 * @return	mixed
-	 * @throws	Exception
+	 * @throws	PHPExcel_Exception
 	 */
 	public function calculateFormula($formula, $cellID=null, PHPExcel_Cell $pCell = null) {
 		//	Initialise the logging settings
@@ -2236,8 +2236,8 @@ class PHPExcel_Calculation {
 		//	Execute the calculation
 		try {
 			$result = self::_unwrapResult($this->_calculateFormulaValue($formula, $cellID, $pCell));
-		} catch (Exception $e) {
-			throw(new Exception($e->getMessage()));
+		} catch (PHPExcel_Exception $e) {
+			throw(new PHPExcel_Exception($e->getMessage()));
 		}
 
 		//	Reset calculation cacheing to its previous state
@@ -2254,7 +2254,7 @@ class PHPExcel_Calculation {
 	 * @param	string			$cellID		The ID (e.g. A3) of the cell that we are calculating
 	 * @param	PHPExcel_Cell	$pCell		Cell to calculate
 	 * @return	mixed
-	 * @throws	Exception
+	 * @throws	PHPExcel_Exception
 	 */
 	public function _calculateFormulaValue($formula, $cellID=null, PHPExcel_Cell $pCell = null) {
 //		echo '<b>'.$cellID.'</b><br />';
@@ -3129,7 +3129,7 @@ class PHPExcel_Calculation {
 								//	Perform the required operation against the operand 1 matrix, passing in operand 2
 								$matrixResult = $matrix->concat($operand2);
 								$result = $matrixResult->getArray();
-							} catch (Exception $ex) {
+							} catch (PHPExcel_Exception $ex) {
 								$this->_writeDebug('JAMA Matrix Exception: '.$ex->getMessage());
 								$result = '#VALUE!';
 							}
@@ -3175,7 +3175,7 @@ class PHPExcel_Calculation {
 						$matrix1 = new PHPExcel_Shared_JAMA_Matrix($arg);
 						$matrixResult = $matrix1->arrayTimesEquals($multiplier);
 						$result = $matrixResult->getArray();
-					} catch (Exception $ex) {
+					} catch (PHPExcel_Exception $ex) {
 						$this->_writeDebug('JAMA Matrix Exception: '.$ex->getMessage());
 						$result = '#VALUE!';
 					}
@@ -3530,7 +3530,7 @@ class PHPExcel_Calculation {
 				//	Perform the required operation against the operand 1 matrix, passing in operand 2
 				$matrixResult = $matrix->$matrixFunction($operand2);
 				$result = $matrixResult->getArray();
-			} catch (Exception $ex) {
+			} catch (PHPExcel_Exception $ex) {
 				$this->_writeDebug('JAMA Matrix Exception: '.$ex->getMessage());
 				$result = '#VALUE!';
 			}
@@ -3595,7 +3595,7 @@ class PHPExcel_Calculation {
 	protected function _raiseFormulaError($errorMessage) {
 		$this->formulaError = $errorMessage;
 		$this->debugLogStack = array();
-		if (!$this->suppressFormulaErrors) throw new Exception($errorMessage);
+		if (!$this->suppressFormulaErrors) throw new PHPExcel_Exception($errorMessage);
 		trigger_error($errorMessage, E_USER_ERROR);
 	}	//	function _raiseFormulaError()
 
@@ -3606,7 +3606,7 @@ class PHPExcel_Calculation {
 	 * @param	string				&$pRange		String based range representation
 	 * @param	PHPExcel_Worksheet	$pSheet		Worksheet
 	 * @return  mixed				Array of values in range if range contains more than one element. Otherwise, a single value is returned.
-	 * @throws	Exception
+	 * @throws	PHPExcel_Exception
 	 */
 	public function extractCellRange(&$pRange = 'A1', PHPExcel_Worksheet $pSheet = null, $resetLog=true) {
 		// Return value
@@ -3662,7 +3662,7 @@ class PHPExcel_Calculation {
 	 * @param	string				&$pRange	String based range representation
 	 * @param	PHPExcel_Worksheet	$pSheet		Worksheet
 	 * @return  mixed				Array of values in range if range contains more than one element. Otherwise, a single value is returned.
-	 * @throws	Exception
+	 * @throws	PHPExcel_Exception
 	 */
 	public function extractNamedRange(&$pRange = 'A1', PHPExcel_Worksheet $pSheet = null, $resetLog=true) {
 		// Return value

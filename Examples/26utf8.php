@@ -92,7 +92,7 @@ try {
 		$objWriter->save(str_replace('.php', '.pdf', __FILE__));
 		echo date('H:i:s') , " File written to " , str_replace('.php', '.pdf', pathinfo(__FILE__, PATHINFO_BASENAME)) , EOL;
 	}
-} catch (Exception $e) {
+} catch (PHPExcel_Exception $e) {
 	echo date('H:i:s') , ' EXCEPTION: ', $e->getMessage() , EOL;
 }
 

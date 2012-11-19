@@ -34,7 +34,7 @@ class DataSeriesValuesTest extends PHPUnit_Framework_TestCase
 
 		try {
 			$result = $testInstance->setDataType('BOOLEAN');
-		} catch (Exception $e) {
+		} catch (PHPExcel_Exception $e) {
 			$this->assertEquals($e->getMessage(), 'Invalid datatype for chart data series values');
 			return;
 		}

@@ -35,7 +35,7 @@ class CodePageTest extends PHPUnit_Framework_TestCase
 		$invalidCodePage = 12345;
 		try {
 			$result = call_user_func(array('PHPExcel_Shared_CodePage','NumberToName'),$invalidCodePage);
-		} catch (Exception $e) {
+		} catch (PHPExcel_Exception $e) {
 			$this->assertEquals($e->getMessage(), 'Unknown codepage: 12345');
 			return;
 		}
@@ -47,7 +47,7 @@ class CodePageTest extends PHPUnit_Framework_TestCase
 		$unsupportedCodePage = 720;
 		try {
 			$result = call_user_func(array('PHPExcel_Shared_CodePage','NumberToName'),$unsupportedCodePage);
-		} catch (Exception $e) {
+		} catch (PHPExcel_Exception $e) {
 			$this->assertEquals($e->getMessage(), 'Code page 720 not supported.');
 			return;
 		}

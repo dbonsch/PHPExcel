@@ -115,7 +115,7 @@ class PHPExcel_Shared_JAMA_LUDecomposition {
 				}
 			}
 		} else {
-			throw new Exception(PHPExcel_Shared_JAMA_Matrix::ArgumentTypeException);
+			throw new PHPExcel_Exception(PHPExcel_Shared_JAMA_Matrix::ArgumentTypeException);
 		}
 	}	//	function __construct()
 
@@ -208,7 +208,7 @@ class PHPExcel_Shared_JAMA_LUDecomposition {
 			}
 			return $d;
 		} else {
-			throw new Exception(PHPExcel_Shared_JAMA_Matrix::MatrixDimensionException);
+			throw new PHPExcel_Exception(PHPExcel_Shared_JAMA_Matrix::MatrixDimensionException);
 		}
 	}	//	function det()
 
@@ -248,10 +248,10 @@ class PHPExcel_Shared_JAMA_LUDecomposition {
 				}
 				return $X;
 			} else {
-				throw new Exception(self::MatrixSingularException);
+				throw new PHPExcel_Exception(self::MatrixSingularException);
 			}
 		} else {
-			throw new Exception(self::MatrixSquareException);
+			throw new PHPExcel_Exception(self::MatrixSquareException);
 		}
 	}	//	function solve()
 

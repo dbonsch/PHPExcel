@@ -114,7 +114,7 @@ foreach($inputFileNames as $inputFileName) {
 				}
 				try {
 					$chart->render($jpegFile);
-				} catch (Exception $e) {
+				} catch (PHPExcel_Exception $e) {
 					echo 'Error rendering chart: ',$e->getMessage();
 				}
 			}
