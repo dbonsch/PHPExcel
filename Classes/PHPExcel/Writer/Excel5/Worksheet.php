@@ -903,7 +903,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 
 			return 0;
 
-		} catch (Exception $e) {
+		} catch (PHPExcel_Exception $e) {
 			// do nothing
 		}
 

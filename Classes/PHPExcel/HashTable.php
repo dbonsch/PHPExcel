@@ -53,7 +53,7 @@ class PHPExcel_HashTable
 	 * Create a new PHPExcel_HashTable
 	 *
 	 * @param	PHPExcel_IComparable[] $pSource	Optional source array to create HashTable from
-	 * @throws	Exception
+	 * @throws	PHPExcel_Exception
 	 */
 	public function __construct($pSource = null)
 	{
@@ -67,14 +67,14 @@ class PHPExcel_HashTable
 	 * Add HashTable items from source
 	 *
 	 * @param	PHPExcel_IComparable[] $pSource	Source array to create HashTable from
-	 * @throws	Exception
+	 * @throws	PHPExcel_Exception
 	 */
 	public function addFromSource($pSource = null) {
 		// Check if an array was passed
 		if ($pSource == null) {
 			return;
 		} else if (!is_array($pSource)) {
-			throw new Exception('Invalid array parameter passed.');
+			throw new PHPExcel_Exception('Invalid array parameter passed.');
 		}
 
 		foreach ($pSource as $item) {
@@ -86,7 +86,7 @@ class PHPExcel_HashTable
 	 * Add HashTable item
 	 *
 	 * @param	PHPExcel_IComparable $pSource	Item to add
-	 * @throws	Exception
+	 * @throws	PHPExcel_Exception
 	 */
 	public function add(PHPExcel_IComparable $pSource = null) {
 		$hash = $pSource->getHashCode();
@@ -100,7 +100,7 @@ class PHPExcel_HashTable
 	 * Remove HashTable item
 	 *
 	 * @param	PHPExcel_IComparable $pSource	Item to remove
-	 * @throws	Exception
+	 * @throws	PHPExcel_Exception
 	 */
 	public function remove(PHPExcel_IComparable $pSource = null) {
 		$hash = $pSource->getHashCode();
