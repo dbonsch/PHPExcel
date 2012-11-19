@@ -105,8 +105,7 @@ abstract class PHPExcel_CachedObjectStorage_CacheBase {
      * Add or Update a cell in cache
      *
      * @param	PHPExcel_Cell	$cell		Cell to update
-	 * @return	void
-     * @throws	Exception
+		* @return	void
      */
 	public function updateCacheData(PHPExcel_Cell $cell) {
 		return $this->addCacheData($cell->getCoordinate(),$cell);
@@ -117,7 +116,6 @@ abstract class PHPExcel_CachedObjectStorage_CacheBase {
      * Delete a cell in cache identified by coordinate address
      *
      * @param	string			$pCoord		Coordinate address of the cell to delete
-     * @throws	Exception
      */
 	public function deleteCacheData($pCoord) {
 		if ($pCoord === $this->_currentObjectID) {
