@@ -54,7 +54,7 @@ class PHPExcel_Cell_Hyperlink
      *
      * @param 	string				$pUrl		Url to link the cell to
      * @param	string				$pTooltip	Tooltip to display on the hyperlink
-     * @throws	Exception
+     * @throws	PHPExcel_Exception
      */
     public function __construct($pUrl = '', $pTooltip = '')
     {
